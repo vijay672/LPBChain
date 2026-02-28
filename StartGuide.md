@@ -36,7 +36,31 @@ npm start
 - Login ID: `demo`
 - Password: `demo123`
 
-## 6. Deployment Verified Addresses
+## 6. Railway Deployment
+Deploy as two separate Railway services from the same repo:
+
+1. Website service
+- Root Directory: `website`
+- Build Command: `npm install && npm run build`
+- Start Command: `npx next start -p $PORT`
+- Healthcheck Path: `/api/health`
+- Required env vars:
+  - `NEXT_PUBLIC_TOKEN_ADDRESS`
+  - `NEXT_PUBLIC_VAULT_ADDRESS`
+  - `NEXT_PUBLIC_CHAIN_ID=97`
+  - `NEXT_PUBLIC_CHATBOT_API_URL` (public URL of chatbot service)
+
+2. Chatbot service
+- Root Directory: `chatbot/server`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Healthcheck Path: `/health`
+- Required env vars:
+  - `GEMINI_API_KEY`
+  - `GEMINI_MODEL` (optional)
+  - `CORS_ORIGIN` (set to website URL)
+
+## 7. Deployment Verified Addresses
 AIUToken: 0x923eAaCDD97d72c15F65682fCeC0b9204D155d39
 YuvaVault: 0x262ADe34Fd3E81c5494cAF7890fD0aE419F26b2e
 
