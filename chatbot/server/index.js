@@ -109,6 +109,10 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 
+app.get("/", (_req, res) => {
+  res.send("SafeLaunch AI Chatbot API is running on Railway.");
+});
+
 app.get("/health", (_req, res) => {
   res.json({ ok: true, models: MODEL_PRIORITY });
 });
@@ -202,7 +206,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`AI server ready on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`AI server ready on http://0.0.0.0:${PORT}`);
   console.log(`Model priority: ${MODEL_PRIORITY.join(" -> ")}`);
 });
